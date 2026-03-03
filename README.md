@@ -30,7 +30,7 @@ To provide a simple and efficient platform for customers to create personalized 
 Here are some screenshots from the project:
 
  
-Customized Gift Store(Demo\A.jpeg)  
+![Customized Gift Store](Demo\A.jpeg)  
 ![Login Page](Demo/B.jpeg)
 ![All Products Page](Demo/D.jpeg)  
 ![Customized Ring Page](Demo/E.jpeg)  
