@@ -30,12 +30,12 @@ To provide a simple and efficient platform for customers to create personalized 
 Here are some screenshots from the project:
 
  
-![Signup Page]("Demo\A.jpeg")  
-![Login Page](Demo/B.png)
-![All Products Page](Demo/D.png)  
-![Customized Ring Page](Demo/E.png)  
-![Customization Page](Demo/F.png)  
-![Cart Page](Demo/F.png)  
+![Signup Page](Demo\A.jpeg)  
+![Login Page](Demo/B.jpeg)
+![All Products Page](Demo/D.jpeg)  
+![Customized Ring Page](Demo/E.jpeg)  
+![Customization Page](Demo/F.jpeg)  
+![Cart Page](Demo/F.jpeg)  
 
 *(Replace these with your actual filenames in the Demo folder.)*
 
