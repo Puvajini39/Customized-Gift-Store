@@ -37,7 +37,7 @@ Here are some screenshots from the project:
 ![Customization Page](Demo/F.jpeg)  
 ![Cart Page](Demo/F.jpeg)  
 
-*(Replace these with your actual filenames in the Demo folder.)*
+
 
 ## 💻 Installation
 1. Clone the repository:
