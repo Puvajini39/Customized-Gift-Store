@@ -29,10 +29,13 @@ To provide a simple and efficient platform for customers to create personalized 
 ## 📸 Screenshots
 Here are some screenshots from the project:
 
-![Home Page](Demo/home.png)  
-![Signup Page](Demo/signup.png)  
-![Gift Customization](Demo/customize.png)  
-![Order Confirmation](Demo/order.png)  
+ 
+![Signup Page]("Demo\A.jpeg")  
+![Login Page](Demo/B.png)
+![All Products Page](Demo/D.png)  
+![Customized Ring Page](Demo/E.png)  
+![Customization Page](Demo/F.png)  
+![Cart Page](Demo/F.png)  
 
 *(Replace these with your actual filenames in the Demo folder.)*
 
