@@ -35,7 +35,7 @@ Here are some screenshots from the project:
 ![All Products Page](Demo/D.jpeg)  
 ![Customized Ring Page](Demo/E.jpeg)  
 ![Customization Page](Demo/F.jpeg)  
-![Cart Page](Demo/F.jpeg)  
+![Cart Page](Demo/G.jpeg)  
 
 
 
