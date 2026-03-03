@@ -1,6 +1,6 @@
 # 🎁 Customized Gift Store
 
-![Website Preview](Demo/c.jpeg)  <!-- Replace with your main screenshot -->
+![Website Preview](Demo/C.jpeg)  <!-- Replace with your main screenshot -->
 
 ## 📌 Project Description
 The **Customized Gift Store** is a web-based application where users can order personalized gifts online. Customers can customize products by adding names, special messages, and photos, making gifts unique for birthdays, weddings, anniversaries, and other occasions.
