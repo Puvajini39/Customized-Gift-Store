@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customized Gift Store</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+           background-image: url(461a0d27a3a739233facb5be9ec2d515.jpg);
+     background-position: center;
+     background-size: contain;
+    
+           margin: 0;
+            padding: 0;
+           
+        }
+
+        /* Header */
+        header {
+            background-color: rgb(249, 243, 243);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            position: absolute;
+            
+            
+        }
+
+        .login-signup {
+      position: absolute;
+      top: 50px;
+      left: 140px;
+    }
+    .login-signup button {
+      margin-right: 10px;
+      background-color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: black;
+      border: none;
+    }
+    /* Account Dropdown */
+    .account-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgb(249, 243, 243);
+            min-width: 150px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+
+        .account-dropdown-content button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+        }
+
+        .account-dropdown-content button:hover {
+            background-color: #ddd;
+        }
+
+        .account-dropdown:hover .account-dropdown-content {
+            display: block;
+        }
+
+        .account-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a, .account-dropdown button {
+            color: rgb(19, 19, 19);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav a:hover, .account-dropdown button:hover {
+            color: red;
+        }
+
+        .hero {
+            background: url('background.jpg') no-repeat center center/cover;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 28px;
+        }
+
+        /* Search Box */
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .search-box button {
+            background:rgba(231, 38, 38, 0.911);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+      
+
+
+        /* Hero Section */
+        .hero {
+            background: url('background.jpg') no-repeat center center/cover;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 28px;
+        }
+       
+        .sub-heading {
+            text-align: left;  
+    font-size:15px;   
+    font-weight: normal; 
+    color: white;  
+    margin-top: 10px;  
+    max-width: 600px;  
+    margin-left: 20px; 
+}
+
+
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* Products Section */
+        .products {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 8px;
+            
+            
+s
+        .product {
+            background: rgb(254, 251, 251);
+            padding: 10px;
+            color: aliceblue !important ;
+            font-weight: bold;
+            max-width: 100%;
+         overflow-x: auto;
+           
+}
+        }
+
+        .product img {
+            width: 90%;
+           height: 45%;
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+           
+           
+        }
+        
+            
+        .product:hover img {
+    transform: scale(1.2);  /* Zoom in */
+    box-shadow: 0 4px 8px rgba(155, 13, 13, 0.911);  /* Add shadow on hover */
+    border: 3px solid white; 
+    
+    
+}
+        .product h3 {
+            color: white;
+            
+        }
+        .price{
+                color: white;
+                
+            }
+        .product button {
+            background: rgb(149, 28, 36);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        
+
+        /* Footer */
+        footer {
+            background: white;
+            color: rgb(13, 13, 13);
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+    
+<header>  
+    <div class="logo"></div>
+    <img src="WhatsApp Image 2025-02-16 at 10.27.00_46874477.jpg" width="100" height="100" alt="Store Logo">
+    
+    <div class="login-signup">
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='signup.html'">Signup</button>
+        
+    </div>
+
+    
+    <nav>
+          <!-- Account Dropdown -->
+          <div class="account-dropdown">
+            <img src="097d3cf1d036e549d1caa10ad9268dfe.jpg" class="account-logo" alt="Account Logo">
+            <button>Account</button>
+            <div class="account-dropdown-content">
+                <button onclick="showSwitchAccountDropdown()">Switch Account</button>
+                <button onclick="addAnotherAccount()">Add Another Account</button>
+                <button onclick="removeAccount()">Remove Account</button>
+                <!-- Switch Account Dropdown (hidden by default) -->
+                <div id="switch-account-dropdown" style="display: none;">
+                    <select id="switch-account" onchange="switchAccount()">
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+            </div>
+        <a href="Home.html">HOME</a>
+        <a href="About us.html">ABOUT US</a>
+        <a href="All Products.html">ALL PRODUCTS</a>
+        <a href="Contact us.html">CONTACT US</a>
+        <a href="Cart.html"> 🛒CART</a>
+        <a href="Search.html"></a>
+        <div class="search-box">
+            <input type="text" placeholder="Search products...">
+            <button>🔍</button>
+        </div>
+    </nav>
+</header>
+
+
+
+<section class="hero">
+    <h1>CUSTOMIZED GIFTS 🎁</h1>
+</section>
+<section class="sub-heading">
+    <h2>POPULAR 🔥</h2>
+</section>
+
+
+<section class="products">
+    <div class="product">
+        <a href="All Products.html?category=mugs">
+            <img src="278911e7a0c78b9e5ed4b84781ad608b.jpg" alt="Gift 1">
+            <h3>Customized Mugs</h3>
+        </a>
+        <p class="price">LKR 800-2500</p>
+    </div>
+    
+    <div class="product">
+        <a href="All Products.html?category=tshirts">
+            <img src="628b5ccf9e891646b1eb158972cff39b.jpg" alt="Gift 2">
+            <h3>Customized T-shirts</h3>
+        </a>
+        <p class="price">LKR 1000-3400</p>
+    </div>
+    
+    <div class="product">
+        <a href="All Products.html?category=frames">
+            <img src="608b23452c78958d1fc9ae384ab81681.jpg" alt="Gift 3">
+            <h3>Customized Frames</h3>
+        </a>
+        <p class="price">LKR 1800-4500</p>
+    </div>
+    
+    <div class="product">
+        <a href="All Products.html?category=caps">
+            <img src="777a389308e40a2a3ed244874ce32bc6.jpg" alt="Gift 4">
+            <h3>Customized Caps</h3>
+        </a>
+        <p class="price">LKR 1000-2300</p>
+    </div>
+    
+    <div class="product">
+        <a href="All Products.html?category=rings">
+            <img src="87e8ecd06903e1b5c3970a72ca762ea6.jpg" alt="Gift 5">
+            <h3>Customized Rings</h3>
+        </a>
+        <p class="price">LKR 700-5300</p>
+    </div>
+    
+
+
+</section>
+
+<footer>
+    <p>&copy; 2025 Customized Gift Store. All Rights Reserved.</p>
+    
+</footer>
+
+<script>
+    // Account Dropdown Functions
+function showSwitchAccountDropdown() {
+        const switchAccountDropdown = document.getElementById("switch-account-dropdown");
+        const select = document.getElementById("switch-account");
+
+        // Clear existing options
+        select.innerHTML = '<option value="">Select Account</option>';
+
+        // Populate dropdown with existing accounts
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        users.forEach(user => {
+            const option = document.createElement("option");
+            option.value = user.email;
+            option.textContent = user.email;
+            select.appendChild(option);
+        });
+
+        // Toggle dropdown visibility
+        switchAccountDropdown.style.display = "block";
+    }
+
+    function switchAccount() {
+        const selectedEmail = document.getElementById("switch-account").value;
+        if (selectedEmail) {
+            localStorage.setItem("loggedInEmail", selectedEmail);
+            alert("Switched to account: " + selectedEmail);
+            window.location.href = "account.html"; // Redirect to account page
+        }
+    }
+
+    function addAnotherAccount() {
+        alert("Redirecting to login page...");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+
+    function removeAccount() {
+        const loggedInEmail = localStorage.getItem("loggedInEmail");
+        if (loggedInEmail === "guest@example.com") {
+            alert("Guest accounts cannot be removed. Please sign up to create an account.");
+        } else {
+            const confirmRemove = confirm("Are you sure you want to remove your account? This action cannot be undone.");
+            if (confirmRemove) {
+                let users = JSON.parse(localStorage.getItem("users")) || [];
+                users = users.filter(user => user.email !== loggedInEmail);
+                localStorage.setItem("users", JSON.stringify(users));
+                localStorage.removeItem("loggedInEmail");
+                alert("Account removed successfully. Redirecting to home page...");
+                window.location.href = "Home.html";
+            }
+        }
+    }
+
+  </script>
+</body>
+</html>

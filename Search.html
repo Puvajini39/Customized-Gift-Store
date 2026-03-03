@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Products - Customized Gift Store</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-image: url(461a0d27a3a739233facb5be9ec2d515.jpg);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: rgb(249, 243, 243);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            position: absolute;
+        }
+
+        .login-signup {
+            position: absolute;
+            top: 50px;
+            left: 140px;
+        }
+
+        .login-signup button {
+            margin-right: 10px;
+            background-color: rgb(255, 255, 255);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: rgb(11, 11, 11);
+            border: none;
+        }
+
+        /* Account Dropdown */
+        .account-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgb(249, 243, 243);
+            min-width: 150px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+
+        .account-dropdown-content button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+        }
+
+        .account-dropdown-content button:hover {
+            background-color: #ddd;
+        }
+
+        .account-dropdown:hover .account-dropdown-content {
+            display: block;
+        }
+
+        .account-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a, .account-dropdown button {
+            color: rgb(19, 19, 19);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav a:hover, .account-dropdown button:hover {
+            color: red;
+        }
+
+        .hero {
+            background: url('background.jpg') no-repeat center center/cover;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 28px;
+        }
+
+        /* Search Box */
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px auto;
+            width: 50%;
+        }
+
+        .search-box input {
+            padding: 10px;
+            border: none;
+            outline: none;
+            flex: 1;
+        }
+
+        .search-box button {
+            background: rgba(231, 38, 38, 0.911);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        /* Product Section */
+        .products-container {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: 220px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product:hover img {
+            transform: scale(1.5);
+            box-shadow: 0 4px 8px rgba(155, 13, 13, 0.911);
+            border: 3px solid white;
+        }
+
+        .product h3 {
+            color: black;
+            margin-top: 10px;
+        }
+
+        .product p {
+            color: red;
+            font-size: 16px;
+        }
+
+        .product button {
+            background: rgb(149, 28, 36);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .product button:hover {
+            background: red;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            color: rgb(13, 13, 13);
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>  
+    <div class="logo"></div>
+    <img src="WhatsApp Image 2025-02-16 at 10.27.00_46874477.jpg" width="100" height="100">
+    
+    <div class="login-signup">
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='signup.html'">Signup</button>
+    </div>
+
+    <nav>
+        <!-- Account Dropdown -->
+        <div class="account-dropdown">
+            <img src="097d3cf1d036e549d1caa10ad9268dfe.jpg" class="account-logo" alt="Account Logo">
+            <button>Account</button>
+            <div class="account-dropdown-content">
+                <button onclick="showSwitchAccountDropdown()">Switch Account</button>
+                <button onclick="addAnotherAccount()">Add Another Account</button>
+                <button onclick="removeAccount()">Remove Account</button>
+                <!-- Switch Account Dropdown (hidden by default) -->
+                <div id="switch-account-dropdown" style="display: none;">
+                    <select id="switch-account" onchange="switchAccount()">
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <a href="Home.html">HOME</a>
+        <a href="About us.html">ABOUT US</a>
+        <a href="All Products.html">ALL PRODUCTS</a>
+        <a href="Contact us.html">CONTACT US</a>
+        <a href="Cart.html"> 🛒CART</a>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <button onclick="searchProducts()">🔍</button>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>SEARCH PRODUCTS 🔍</h1>
+</section>
+
+<!-- Products Section -->
+<section class="products-container" id="products-list"></section>
+
+<footer>
+    <p>&copy; 2025 Customized Gift Store. All Rights Reserved.</p>
+</footer>
+
+<script>
+    const products = {
+        mugs: [
+            { name: "Text Customized Couples Mug Set", price: "LKR 2500", img: "love-legacy-mug-set_1 (1).webp" },
+            { name: "Photo Customized Magic Mug", price: "LKR 2300", img: "8ee9f53478a029209b0fd7b2b56f0d8b.jpg" },
+            { name: "Photo Customized Mug", price: "LKR 1900", img: "2103cb2e7302abb9757e0954364e3625.jpg" },
+            { name: "Text Customized Impression Mug", price: "LKR 800", img: "58cfafbed6c8abd1a8d6a6d14c18db51.jpg" }
+        ],
+        tshirts: [
+            { name: "Name&Quote Customized Tshirt", price: "LKR 1050", img: "877f2004f448606474cf754d94cec664.jpg" },
+            { name: "Photo Customized Printed Tshirt", price: "LKR 3300", img: "f6c1f686f0e069aa0d4316e6e33e4d58.jpg" },
+            { name: "Logo Customized Tshirts", price: "LKR 2500", img: "1fe69186216bb56a97b93c84dd7844f7.jpg" }
+        ],
+        frames: [
+            { name: "College Photo Frames", price: "LKR 1850", img: "8c2d8d4421094c0de6446e109ca96b84.jpg" },
+            { name: "Photo Customized Glass Frames", price: "LKR 2750", img: "download (1).jpeg" },
+            { name: "Photo and Text Customized Resine Frames", price: "LKR 4300", img: "7e1a56150a2e5b74399694076e2d4b08.jpg" },
+            { name: "Photo Customized Wooden Frames", price: "LKR 3500", img: "images (1).jpeg" }
+        ],
+        caps: [
+            { name: "Metal Logo Caps", price: "LKR 2000", img: "f37f009fef742279a27e66cece8547bd.jpg" },
+            { name: "Text Printed Caps", price: "LKR 1500", img: "12b7644c6b3943853969c5d093446a25.jpg" }
+        ],
+        rings: [
+            { name: "Letter Customized Astrology Rings", price: "LKR 1800", img: "6c499bd75fb6f173c47133849c11932f.jpg" },
+            { name: "Photo customized Couple Rings", price: "LKR 3500", img: "4f2743c8b3a1e8b95b0232bed5005fa6.jpg" },
+            { name: "Engraved Initial Ring", price: "LKR 1100", img: "d8752558c40e4e0b0514d87b4afba884.jpg" }
+        ],
+        bottles: [
+            { name: "Customized Photo Bottle", price: "LKR 2800", img: "2a37fd11f1a1868cb4df05bc4e3d4c7e.jpg" },
+            { name: "Text Personalized Name Bottle", price: "LKR 1800", img: "4873a408d2e2a6661589ad6db169ac9b.jpg" },
+            { name: "Custom Logo Bottle", price: "LKR 2500", img: "b290974e664fdf5fb7e774ae5666093c.jpg" }
+        ],
+        bouquets: [
+            { name: "Customized Photo Boquets", price: "LKR 4500", img: "197f24d8f041013f9b0b096f0e841c2f.jpg" },
+            { name: "Personalized Message Bouquet", price: "LKR 3000", img: "8fcb4392476e647aaa3b52a519352aa0.jpg" }
+        ]
+    };
+
+    // Function to search products
+    function searchProducts() {
+        const searchInput = document.getElementById("search-input").value.toLowerCase();
+        const productList = document.getElementById("products-list");
+        productList.innerHTML = "";
+
+        let foundProducts = [];
+
+        // Loop through all categories and products
+        for (const category in products) {
+            products[category].forEach(product => {
+                // Check if the product name includes the search term
+                if (product.name.toLowerCase().includes(searchInput)) {
+                    foundProducts.push(product);
+                }
+            });
+        }
+
+        // If no products are found, check for partial matches (e.g., "cups" for mugs, bottles, etc.)
+        if (foundProducts.length === 0) {
+            for (const category in products) {
+                products[category].forEach(product => {
+                    // Check if the category name includes the search term
+                    if (category.toLowerCase().includes(searchInput)) {
+                        foundProducts.push(product);
+                    }
+                });
+            }
+        }
+
+        // Display found products
+        if (foundProducts.length > 0) {
+            foundProducts.forEach(product => {
+                productList.innerHTML += `
+                    <div class="product">
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.price}</p>
+                        <button onclick="viewProduct('${product.name}', '${product.img}', '${product.price}')">👁️ View</button>
+                    </div>
+                `;
+            });
+        } else {
+            productList.innerHTML = "<p>No products found.</p>";
+        }
+    }
+
+    // Function to view and customize the product
+    function viewProduct(productName, productImg, productPrice) {
+        // Redirect to the customization page with product details
+        window.location.href = `Customize.html?product=${encodeURIComponent(productName)}&img=${encodeURIComponent(productImg)}&price=${encodeURIComponent(productPrice)}`;
+    }
+
+    // Account Dropdown Functions
+    function showSwitchAccountDropdown() {
+        const switchAccountDropdown = document.getElementById("switch-account-dropdown");
+        const select = document.getElementById("switch-account");
+
+        // Clear existing options
+        select.innerHTML = '<option value="">Select Account</option>';
+
+        // Populate dropdown with existing accounts
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        users.forEach(user => {
+            const option = document.createElement("option");
+            option.value = user.email;
+            option.textContent = user.email;
+            select.appendChild(option);
+        });
+
+        // Toggle dropdown visibility
+        switchAccountDropdown.style.display = "block";
+    }
+
+    function switchAccount() {
+        const selectedEmail = document.getElementById("switch-account").value;
+        if (selectedEmail) {
+            localStorage.setItem("loggedInEmail", selectedEmail);
+            alert("Switched to account: " + selectedEmail);
+            window.location.href = "account.html"; // Redirect to account page
+        }
+    }
+
+    function addAnotherAccount() {
+        alert("Redirecting to login page...");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+
+    function removeAccount() {
+        const loggedInEmail = localStorage.getItem("loggedInEmail");
+        if (loggedInEmail === "guest@example.com") {
+            alert("Guest accounts cannot be removed. Please sign up to create an account.");
+        } else {
+            const confirmRemove = confirm("Are you sure you want to remove your account? This action cannot be undone.");
+            if (confirmRemove) {
+                let users = JSON.parse(localStorage.getItem("users")) || [];
+                users = users.filter(user => user.email !== loggedInEmail);
+                localStorage.setItem("users", JSON.stringify(users));
+                localStorage.removeItem("loggedInEmail");
+                alert("Account removed successfully. Redirecting to home page...");
+                window.location.href = "Home.html";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

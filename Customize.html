@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Product</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-image: url(461a0d27a3a739233facb5be9ec2d515.jpg);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: rgb(249, 243, 243);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            position: absolute;
+        }
+
+        .login-signup {
+            position: absolute;
+            top: 50px;
+            left: 140px;
+        }
+
+        .login-signup button {
+            margin-right: 10px;
+            background-color: rgb(252, 247, 247);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: rgb(11, 11, 11);
+            border: none;
+        }
+         /* Account Dropdown */
+         .account-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgb(249, 243, 243);
+            min-width: 150px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+
+        .account-dropdown-content button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+        }
+
+        .account-dropdown-content button:hover {
+            background-color: #ddd;
+        }
+
+        .account-dropdown:hover .account-dropdown-content {
+            display: block;
+        }
+
+        .account-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a, .account-dropdown button {
+            color: rgb(19, 19, 19);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav a:hover, .account-dropdown button:hover {
+            color: red;
+        }
+
+        .hero {
+            background: url('background.jpg') no-repeat center center/cover;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 28px;
+        }
+
+
+        /* Customize Section */
+        .customize-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .customization-options {
+            flex: 1;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+
+        .customization-options h2 {
+            color: rgb(149, 28, 36);
+            margin-bottom: 20px;
+        }
+
+        .customization-options label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: rgb(149, 28, 36);
+        }
+
+        .customization-options input[type="file"],
+        .customization-options input[type="text"],
+        .customization-options select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-to-cart-btn {
+            background: rgb(149, 28, 36);
+            color: white;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .add-to-cart-btn:hover {
+            background: red;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            color: rgb(13, 13, 13);
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Hide options by default */
+        .customization-options .option {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>  
+    <div class="logo"></div>
+    <img src="WhatsApp Image 2025-02-16 at 10.27.00_46874477.jpg" width="100" height="100">
+    
+    <div class="login-signup">
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='signup.html'">Signup</button>
+
+    </div>
+
+    <nav>
+          <!-- Account Dropdown -->
+          <div class="account-dropdown">
+            <img src="097d3cf1d036e549d1caa10ad9268dfe.jpg" class="account-logo" alt="Account Logo">
+            <button>Account</button>
+            <div class="account-dropdown-content">
+                <button onclick="showSwitchAccountDropdown()">Switch Account</button>
+                <button onclick="addAnotherAccount()">Add Another Account</button>
+                <button onclick="removeAccount()">Remove Account</button>
+                <!-- Switch Account Dropdown (hidden by default) -->
+                <div id="switch-account-dropdown" style="display: none;">
+                    <select id="switch-account" onchange="switchAccount()">
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+            </div>
+        <a href="Home.html">HOME</a>
+        <a href="About us.html">ABOUT US</a>
+        <a href="All Products.html">ALL PRODUCTS</a>
+        <a href="Contact us.html">CONTACT US</a>
+        <a href="Cart.html"> 🛒CART</a>
+        <div class="search-box">
+            <input type="text" placeholder="Search products...">
+            <button>🔍</button>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>CUSTOMIZED GIFTS 🎁</h1>
+</section>
+
+<!-- Customize Section -->
+<div class="customize-container">
+    <!-- Product Image -->
+    <div class="product-image">
+        <img id="product-img" src="" alt="Product Image">
+        <p id="product-name" style="font-weight: bold; color: orange; margin-top: 25px;"></p>
+        <p id="product-price" style="font-weight: bold; color: orange; margin-top: 20px;"></p>
+    </div>
+
+    <!-- Customization Options -->
+    <div class="customization-options">
+        <h2>Customize Your Product</h2>
+
+        <!-- Photo Upload Option -->
+        <div class="option" id="photo-option">
+            <label for="upload-photo">Upload Photo:</label>
+            <input type="file" id="upload-photo" accept="image/*">
+        </div>
+
+        <!-- Text Input Option -->
+        <div class="option" id="text-option">
+            <label for="custom-text">Add Custom Text:</label>
+            <input type="text" id="custom-text" placeholder="Enter your text">
+        </div>
+
+        <!-- Color Selection Option -->
+        <div class="option" id="color-option">
+            <label for="select-color">Select Color:</label>
+            <select id="select-color">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="black">Black</option>
+                <option value="pink">Pink</option>
+                <option value="purple">Purple</option>
+                <option value="yellow">Yellow</option>
+                <option value="orange">Orange</option>
+                <option value="brown">Brown</option>
+                <option value="white">White</option>
+            </select>
+        </div>
+
+        <!-- Logo Upload Option -->
+        <div class="option" id="logo-option">
+            <label for="upload-logo">Upload Logo:</label>
+            <input type="file" id="upload-logo" accept="image/*">
+        </div>
+
+        <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Customized Gift Store. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Account Dropdown Functions
+function showSwitchAccountDropdown() {
+        const switchAccountDropdown = document.getElementById("switch-account-dropdown");
+        const select = document.getElementById("switch-account");
+
+        // Clear existing options
+        select.innerHTML = '<option value="">Select Account</option>';
+
+        // Populate dropdown with existing accounts
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        users.forEach(user => {
+            const option = document.createElement("option");
+            option.value = user.email;
+            option.textContent = user.email;
+            select.appendChild(option);
+        });
+
+        // Toggle dropdown visibility
+        switchAccountDropdown.style.display = "block";
+    }
+
+    function switchAccount() {
+        const selectedEmail = document.getElementById("switch-account").value;
+        if (selectedEmail) {
+            localStorage.setItem("loggedInEmail", selectedEmail);
+            alert("Switched to account: " + selectedEmail);
+            window.location.href = "account.html"; // Redirect to account page
+        }
+    }
+
+    function addAnotherAccount() {
+        alert("Redirecting to login page...");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+
+    function removeAccount() {
+        const loggedInEmail = localStorage.getItem("loggedInEmail");
+        if (loggedInEmail === "guest@example.com") {
+            alert("Guest accounts cannot be removed. Please sign up to create an account.");
+        } else {
+            const confirmRemove = confirm("Are you sure you want to remove your account? This action cannot be undone.");
+            if (confirmRemove) {
+                let users = JSON.parse(localStorage.getItem("users")) || [];
+                users = users.filter(user => user.email !== loggedInEmail);
+                localStorage.setItem("users", JSON.stringify(users));
+                localStorage.removeItem("loggedInEmail");
+                alert("Account removed successfully. Redirecting to home page...");
+                window.location.href = "Home.html";
+            }
+        }
+    }
+
+    // Load product details from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+    const productName = params.get("product");
+    const productImg = params.get("img");
+    const productPrice = params.get("price");
+
+    // Set product image, price, and name
+    const productImageElement = document.getElementById("product-img");
+    const productPriceElement = document.getElementById("product-price");
+    const productNameElement = document.getElementById("product-name");
+
+    productImageElement.src = productImg;
+    productPriceElement.textContent = productPrice;
+    productNameElement.textContent = productName;
+
+    // Function to show/hide customization options based on product name
+    function showCustomizationOptions(productName) {
+        const photoOption = document.getElementById("photo-option");
+        const textOption = document.getElementById("text-option");
+        const colorOption = document.getElementById("color-option");
+        const logoOption = document.getElementById("logo-option");
+
+        // Hide all options by default
+        photoOption.style.display = "none";
+        textOption.style.display = "none";
+        colorOption.style.display = "none";
+        logoOption.style.display = "none";
+
+        // Show options based on product name
+        if (productName.includes("Photo")) {
+            photoOption.style.display = "block";
+        }
+        if (productName.includes("Text") || productName.includes("Quote") || productName.includes("Message") || productName.includes("Letter") || productName.includes("Engraved")) {
+            textOption.style.display = "block";
+        }
+        if (productName.includes("Color")) {
+            colorOption.style.display = "block";
+        }
+        if (productName.includes("Logo")) {
+            logoOption.style.display = "block";
+        }
+    }
+
+    // Call the function to show options based on the product name
+    showCustomizationOptions(productName);
+
+    // Function to add product to cart
+    function addToCart() {
+        const customPhoto = document.getElementById("upload-photo").files[0];
+        const customText = document.getElementById("custom-text").value;
+        const selectedColor = document.getElementById("select-color").value;
+        const customLogo = document.getElementById("upload-logo").files[0];
+
+        // Save customization details to localStorage
+        const cartItem = {
+            category,
+            productName,
+            productImg,
+            productPrice,
+            customPhoto: customPhoto ? customPhoto.name : null,
+            customText,
+            selectedColor,
+            customLogo: customLogo ? customLogo.name : null,
+        };
+
+        // Save to localStorage
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        cartItems.push(cartItem);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+        // Redirect to Cart Page
+        window.location.href = "Cart.html";
+    }
+</script>
+
+</body>
+</html>

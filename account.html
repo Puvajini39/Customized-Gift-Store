@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Customized Gift Store</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(461a0d27a3a739233facb5be9ec2d515.jpg);
+            background-position: center;
+            background-size: contain;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: rgb(249, 243, 243);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            position: absolute;
+        }
+
+        .login-signup {
+            position: absolute;
+            top: 50px;
+            left: 140px;
+        }
+
+        .login-signup button {
+            margin-right: 10px;
+            background-color: rgb(252, 247, 247);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+            border: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a, .account-dropdown button {
+            color: rgb(19, 19, 19);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav a:hover, .account-dropdown button:hover {
+            color: red;
+        }
+
+        .hero {
+            background: url('background.jpg') no-repeat center center/cover;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 28px;
+        }
+
+        /* Account Section */
+        .account-container {
+            display: flex;
+            flex-direction: column; /* Align vertically */
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            font-size: 18px;
+        }
+
+        .account-details, .order-history {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 2000px;
+            text-align: left;
+            margin: 10px;
+        }
+
+        .account-details h2, .order-history h2 {
+            color: rgb(149, 28, 36);
+            margin-bottom: 15px;
+        }
+
+        .account-details p, .order-history p {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            color: rgb(13, 13, 13);
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Dropdown for Account Button */
+        .account-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgb(249, 243, 243);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+
+        .account-dropdown-content button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+        }
+
+        .account-dropdown-content button:hover {
+            background-color: #ddd;
+        }
+
+        .account-dropdown:hover .account-dropdown-content {
+            display: block;
+        }
+
+        .account-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>  
+    <div class="logo"></div>
+    <img src="WhatsApp Image 2025-02-16 at 10.27.00_46874477.jpg" width="100" height="100" alt="Store Logo">
+    
+    <div class="login-signup">
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='signup.html'">Signup</button>
+    </div>
+
+    <nav>
+        <!-- Account Dropdown -->
+        <div class="account-dropdown">
+            <img src="097d3cf1d036e549d1caa10ad9268dfe.jpg" class="account-logo" alt="Account Logo">
+            <button id="account-button">Account</button>
+            <div class="account-dropdown-content">
+                <button onclick="showSwitchAccountDropdown()">Switch Account</button>
+                <button onclick="addAnotherAccount()">Add Another Account</button>
+                <button onclick="removeAccount()">Remove Account</button>
+                <!-- Switch Account Dropdown (hidden by default) -->
+                <div id="switch-account-dropdown" style="display: none;">
+                    <select id="switch-account" onchange="switchAccount()">
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <a href="Home.html">HOME</a>
+        <a href="About us.html">ABOUT US</a>
+        <a href="All Products.html">ALL PRODUCTS</a>
+        <a href="Contact us.html">CONTACT US</a>
+        <a href="Cart.html"> 🛒CART</a>
+        <div class="search-box">
+            <input type="text" placeholder="Search products...">
+            <button>🔍</button>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>CUSTOMIZED GIFTS 🎁</h1>
+</section>
+
+<!-- Account Section -->
+<div class="account-container">
+    <!-- Customer Details -->
+    <div class="account-details">
+        <h2>Customer Details</h2>
+        <div id="user-details">
+            <!-- User details will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Order Details -->
+    <div class="order-history">
+        <h2>Order History</h2>
+        <div id="order-history">
+            <!-- Order history will be dynamically added here -->
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Customized Gift Store. All Rights Reserved.</p>
+</footer>
+
+<script>
+    // Load user details from localStorage
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let loggedInUser = users.find(user => user.email === localStorage.getItem("loggedInEmail")) || { firstName: "Guest", surname: "", email: "guest@example.com" };
+
+    // Display user details
+    const userDetails = document.getElementById("user-details");
+    const orderHistoryContainer = document.getElementById("order-history");
+    const accountButton = document.getElementById("account-button");
+
+    // Function to display user details
+    function displayUserDetails() {
+        userDetails.innerHTML = `
+            <p><strong>Name:</strong> ${loggedInUser.firstName} ${loggedInUser.surname}</p>
+            <p><strong>Email:</strong> ${loggedInUser.email}</p>
+            <p><strong>Phone:</strong> ${loggedInUser.phone || "N/A"}</p>
+            <p><strong>Date of Birth:</strong> ${loggedInUser.dob || "N/A"}</p>
+        `;
+    }
+
+    // Function to display order history
+    function displayOrderHistory() {
+        let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+        // Filter orders based on the logged-in user or guest
+        if (loggedInUser.email === "guest@example.com") {
+            // For guest users, show only orders placed as a guest
+            orderHistory = orderHistory.filter(order => order.userEmail === "guest@example.com");
+        } else {
+            // For logged-in users, show only their orders
+            orderHistory = orderHistory.filter(order => order.userEmail === loggedInUser.email);
+        }
+
+        orderHistoryContainer.innerHTML = "";
+
+        if (orderHistory.length === 0) {
+            orderHistoryContainer.innerHTML = "<p>No orders found.</p>";
+        } else {
+            orderHistory.forEach(order => {
+                const orderDiv = document.createElement("div");
+                orderDiv.innerHTML = `
+                    <p><strong>Order ID:</strong> ${order.id}</p>
+                    <p><strong>Date:</strong> ${order.date}</p>
+                    <p><strong>Total:</strong> ${order.total}</p>
+                    <p><strong>Status:</strong> ${order.status}</p>
+                    <hr>
+                `;
+                orderHistoryContainer.appendChild(orderDiv);
+            });
+        }
+    }
+
+    // Show Switch Account Dropdown
+    function showSwitchAccountDropdown() {
+        const switchAccountDropdown = document.getElementById("switch-account-dropdown");
+        const select = document.getElementById("switch-account");
+
+        // Clear existing options
+        select.innerHTML = '<option value="">Select Account</option>';
+
+        // Populate dropdown with existing accounts
+        users.forEach(user => {
+            const option = document.createElement("option");
+            option.value = user.email;
+            option.textContent = user.email;
+            if (user.email === loggedInUser.email) {
+                option.selected = true;
+            }
+            select.appendChild(option);
+        });
+
+        // Toggle dropdown visibility
+        switchAccountDropdown.style.display = "block";
+    }
+
+    // Switch Account Functionality
+    function switchAccount() {
+        const selectedEmail = document.getElementById("switch-account").value;
+        if (selectedEmail) {
+            loggedInUser = users.find(user => user.email === selectedEmail);
+            localStorage.setItem("loggedInEmail", selectedEmail);
+            displayUserDetails();
+            displayOrderHistory();
+            updateAccountButton();
+        }
+    }
+
+    // Add Another Account Functionality
+    function addAnotherAccount() {
+        alert("Redirecting to login page...");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+
+    // Remove Account Functionality
+    function removeAccount() {
+        if (loggedInUser.email === "guest@example.com") {
+            alert("Guest accounts cannot be removed. Please sign up to create an account.");
+        } else {
+            const confirmRemove = confirm("Are you sure you want to remove your account? This action cannot be undone.");
+            if (confirmRemove) {
+                users = users.filter(user => user.email !== loggedInUser.email);
+                localStorage.setItem("users", JSON.stringify(users));
+                localStorage.removeItem("loggedInEmail");
+                alert("Account removed successfully. Redirecting to home page...");
+                window.location.href = "Home.html";
+            }
+        }
+    }
+
+    // Update Account Button with User's Name
+    function updateAccountButton() {
+        if (loggedInUser.email !== "guest@example.com") {
+            accountButton.textContent = `${loggedInUser.firstName} ${loggedInUser.surname}`;
+        } else {
+            accountButton.textContent = "Account";
+        }
+    }
+
+    // Initial display
+    displayUserDetails();
+    displayOrderHistory();
+    updateAccountButton();
+</script>
+
+</body>
+</html>

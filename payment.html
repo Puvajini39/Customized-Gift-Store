@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Customized Gift Store</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-image: url(461a0d27a3a739233facb5be9ec2d515.jpg);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: rgb(249, 243, 243);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            position: absolute;
+        }
+
+        .login-signup {
+            position: absolute;
+            top: 50px;
+            left: 140px;
+        }
+
+        .login-signup button {
+            margin-right: 10px;
+            background-color: rgb(252, 247, 247);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: rgb(11, 11, 11);
+            border: none;
+        }
+         /* Account Dropdown */
+         .account-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgb(249, 243, 243);
+            min-width: 150px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+
+        .account-dropdown-content button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+        }
+
+        .account-dropdown-content button:hover {
+            background-color: #ddd;
+        }
+
+        .account-dropdown:hover .account-dropdown-content {
+            display: block;
+        }
+
+        .account-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a, .account-dropdown button {
+            color: rgb(19, 19, 19);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav a:hover, .account-dropdown button:hover {
+            color: red;
+        }
+
+        .hero {
+            background: url('background.jpg') no-repeat center center/cover;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 28px;
+        }
+
+        /* Payment Section */
+        .payment-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .payment-details {
+            margin-bottom: 20px;
+        }
+
+        .payment-details h2 {
+            color: rgb(149, 28, 36);
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .payment-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .payment-details ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .payment-details ul li img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .payment-details ul li span {
+            flex: 1;
+        }
+
+        .customer-details {
+            margin-bottom: 20px;
+        }
+
+        .customer-details label {
+            font-weight: bold;
+            color: rgb(149, 28, 36);
+        }
+
+        .customer-details input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .payment-form label {
+            font-weight: bold;
+            color: rgb(149, 28, 36);
+        }
+
+        .payment-form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .payment-form button {
+            background: rgb(149, 28, 36);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .payment-form button:hover {
+            background: red;
+        }
+
+        .payment-form button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            color: rgb(13, 13, 13);
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>  
+    <div class="logo"></div>
+    <img src="WhatsApp Image 2025-02-16 at 10.27.00_46874477.jpg" width="100" height="100">
+    
+    <div class="login-signup">
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='signup.html'">Signup</button>
+    </div>
+    
+    <nav>
+          <!-- Account Dropdown -->
+          <div class="account-dropdown">
+            <img src="097d3cf1d036e549d1caa10ad9268dfe.jpg" class="account-logo" alt="Account Logo">
+            <button>Account</button>
+            <div class="account-dropdown-content">
+                <button onclick="showSwitchAccountDropdown()">Switch Account</button>
+                <button onclick="addAnotherAccount()">Add Another Account</button>
+                <button onclick="removeAccount()">Remove Account</button>
+                <!-- Switch Account Dropdown (hidden by default) -->
+                <div id="switch-account-dropdown" style="display: none;">
+                    <select id="switch-account" onchange="switchAccount()">
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+            </div>
+        <a href="Home.html">HOME</a>
+        <a href="About us.html">ABOUT US</a>
+        <a href="All Products.html">ALL PRODUCTS</a>
+        <a href="Contact us.html">CONTACT US</a>
+        <a href="Cart.html"> 🛒CART</a>
+        <div class="search-box">
+            <input type="text" placeholder="Search products...">
+            <button>🔍</button>
+        </div>
+    </nav>
+</header>
+
+<!-- Payment Section -->
+<div class="payment-container">
+    <div class="payment-details">
+        <h2>Payment Details</h2>
+        <ul id="payment-items">
+            <!-- Cart items will be dynamically added here -->
+        </ul>
+        <p id="delivery-charge"> 🚚 Delivery Charge: LKR 400</p>
+        <p id="total-amount"> 💵 Total Amount: LKR 0</p>
+    </div>
+
+    <!-- Customer Details -->
+    <div class="customer-details">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="telephone">Telephone:</label>
+        <input type="text" id="telephone" placeholder="Enter your telephone number" maxlength="10" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter your address" required>
+    </div>
+
+    <!-- Payment Form -->
+    <form class="payment-form" onsubmit="return validatePaymentForm()">
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="16" required>
+        <div id="card-number-error" class="error-message">Card number must be exactly 16 digits.</div>
+
+        <label for="expiry-date">Expiry Date</label>
+        <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+        <div id="expiry-date-error" class="error-message">Expiry date must be in MM/YY format.</div>
+
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+
+        <button type="submit">Pay Now</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2025 Customized Gift Store. All Rights Reserved.</p>
+</footer>
+
+<script>
+    // Load cart items from localStorage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    // Fixed delivery charge
+    const deliveryCharge = 400;
+
+    // Load logged-in user details from localStorage
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const loggedInUser = users.find(user => user.email === localStorage.getItem("loggedInEmail")) || { firstName: "Guest", surname: "", phone: "", address: "" };
+
+// Account Dropdown Functions
+function showSwitchAccountDropdown() {
+        const switchAccountDropdown = document.getElementById("switch-account-dropdown");
+        const select = document.getElementById("switch-account");
+
+        // Clear existing options
+        select.innerHTML = '<option value="">Select Account</option>';
+
+        // Populate dropdown with existing accounts
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        users.forEach(user => {
+            const option = document.createElement("option");
+            option.value = user.email;
+            option.textContent = user.email;
+            select.appendChild(option);
+        });
+
+        // Toggle dropdown visibility
+        switchAccountDropdown.style.display = "block";
+    }
+
+    function switchAccount() {
+        const selectedEmail = document.getElementById("switch-account").value;
+        if (selectedEmail) {
+            localStorage.setItem("loggedInEmail", selectedEmail);
+            alert("Switched to account: " + selectedEmail);
+            window.location.href = "account.html"; // Redirect to account page
+        }
+    }
+
+    function addAnotherAccount() {
+        alert("Redirecting to login page...");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+
+    function removeAccount() {
+        const loggedInEmail = localStorage.getItem("loggedInEmail");
+        if (loggedInEmail === "guest@example.com") {
+            alert("Guest accounts cannot be removed. Please sign up to create an account.");
+        } else {
+            const confirmRemove = confirm("Are you sure you want to remove your account? This action cannot be undone.");
+            if (confirmRemove) {
+                let users = JSON.parse(localStorage.getItem("users")) || [];
+                users = users.filter(user => user.email !== loggedInEmail);
+                localStorage.setItem("users", JSON.stringify(users));
+                localStorage.removeItem("loggedInEmail");
+                alert("Account removed successfully. Redirecting to home page...");
+                window.location.href = "Home.html";
+            }
+        }
+    }
+
+    // Function to display payment details
+    function displayPaymentDetails() {
+        const paymentItemsContainer = document.getElementById("payment-items");
+        paymentItemsContainer.innerHTML = "";
+
+        let totalAmount = 0;
+
+        cartItems.forEach((item) => {
+            const price = parseInt(item.productPrice.replace("LKR ", ""));
+            const quantity = item.quantity || 1;
+            totalAmount += price * quantity;
+
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${item.productImg}" alt="${item.productName}">
+                <span>${item.productName} - ${item.productPrice} x ${quantity} = LKR ${price * quantity}</span>
+            `;
+            paymentItemsContainer.appendChild(li);
+        });
+
+        // Display delivery charge and total amount
+        document.getElementById("delivery-charge").textContent = `🚚 Delivery Charge: LKR ${deliveryCharge}`;
+        document.getElementById("total-amount").textContent = `💵 Total Amount: LKR ${totalAmount + deliveryCharge}`;
+    }
+
+    // Function to auto-fill customer details
+    function autoFillCustomerDetails() {
+        if (loggedInUser.email !== "guest@example.com") {
+            document.getElementById("name").value = `${loggedInUser.firstName} ${loggedInUser.surname}`;
+            document.getElementById("telephone").value = loggedInUser.phone || "";
+            document.getElementById("address").value = loggedInUser.address || "";
+        }
+    }
+
+    // Function to validate card number
+    function validateCardNumber(cardNumber) {
+        return /^\d{16}$/.test(cardNumber); // Check if exactly 16 digits
+    }
+
+    // Function to validate expiry date
+    function validateExpiryDate(expiryDate) {
+        return /^\d{2}\/\d{2}$/.test(expiryDate); // Check if in MM/YY format
+    }
+
+    // Function to automatically insert slash in expiry date
+    document.getElementById("expiry-date").addEventListener("input", function (e) {
+        const input = e.target.value.replace(/\D/g, ""); // Remove non-digits
+        if (input.length > 2) {
+            e.target.value = `${input.slice(0, 2)}/${input.slice(2, 4)}`; // Insert slash
+        }
+    });
+
+    // Function to validate payment form
+    function validatePaymentForm() {
+        const cardNumber = document.getElementById("card-number").value;
+        const expiryDate = document.getElementById("expiry-date").value;
+
+        const cardNumberError = document.getElementById("card-number-error");
+        const expiryDateError = document.getElementById("expiry-date-error");
+
+        let isValid = true;
+
+        // Validate card number
+        if (!validateCardNumber(cardNumber)) {
+            cardNumberError.style.display = "block";
+            isValid = false;
+        } else {
+            cardNumberError.style.display = "none";
+        }
+
+        // Validate expiry date
+        if (!validateExpiryDate(expiryDate)) {
+            expiryDateError.style.display = "block";
+            isValid = false;
+        } else {
+            expiryDateError.style.display = "none";
+        }
+
+        // Prevent form submission if validation fails
+        if (!isValid) {
+            return false;
+        }
+
+        // Clear cart items from localStorage
+        localStorage.removeItem("cartItems");
+
+        // Show success message
+        alert("Payment successful!");
+
+        // Refresh the page to clear the order details
+        window.location.reload();
+
+        return true;
+    }
+
+    // Function to check if the cart is empty and disable the payment button
+    function checkCartAndDisableButton() {
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const payButton = document.querySelector(".payment-form button");
+
+        if (cartItems.length === 0) {
+            payButton.disabled = true;
+            payButton.style.backgroundColor = "#ccc"; // Gray out the button
+            payButton.textContent = "Cart is Empty";
+        } else {
+            payButton.disabled = false;
+            payButton.style.backgroundColor = "rgb(149, 28, 36)"; // Reset button color
+            payButton.textContent = "Pay Now";
+        }
+    }
+
+    // Display payment details and auto-fill customer details on page load
+    displayPaymentDetails();
+    autoFillCustomerDetails();
+    checkCartAndDisableButton();
+</script>
+
+</body>
+</html>
